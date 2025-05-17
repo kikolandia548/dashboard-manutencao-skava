@@ -105,7 +105,7 @@ with st.container():
 st.divider()
 st.subheader("Tabela Detalhada dos Dados Filtrados")
 st.dataframe(df_filtro, use_container_width=True)
-== == == =
+
 
 st.set_page_config(page_title="Dash do Kiko 🚜", layout="wide")
 
