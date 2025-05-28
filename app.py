@@ -4,6 +4,13 @@ import streamlit_authenticator as stauth
 import yaml
 from yaml.loader import SafeLoader
 
+
+passwords = ['senha123', 'usiminas2025']
+hashed_passwords = stauth.Hasher(passwords).generate()
+
+print(hashed_passwords)
+
+
 # --------------------- CONFIGURAÇÃO DE PÁGINA ---------------------
 st.set_page_config(page_title="Dashboard de Manutenção - MUSA", layout="wide", initial_sidebar_state="expanded")
 
@@ -30,26 +37,24 @@ dark_style = """
 st.markdown(dark_style, unsafe_allow_html=True)
 
 # --------------------- AUTENTICAÇÃO -------------------------------
-names = ['admin', 'manutencao']
-usernames = ['admin', 'manutencao']
-passwords = ['senha123', 'usiminas2025']
+import streamlit_authenticator as stauth
 
-hashed_passwords = stauth.Hasher(passwords).generate()
-
-credentials = {
-    "usernames": {
-        usernames[i]: {
-            "name": names[i],
-            "password": hashed_passwords[i]
-        } for i in range(len(usernames))
-    }
-}
+names = ['Administrador', 'Supervisor']
+usernames = ['admin', 'supervisor']
+hashed_passwords = [
+    'cole-o-hash-1-aqui',
+    'cole-o-hash-2-aqui'
+]
 
 authenticator = stauth.Authenticate(
-    credentials,
+    names,
+    usernames,
+    hashed_passwords,
     'dashboard_musa_cookie',
     'abcdef',
     cookie_expiry_days=1
+)
+
 )
 
 name, authentication_status, username = authenticator.login('Login', 'sidebar')
