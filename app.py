@@ -27,7 +27,18 @@ names = ['Kiko', 'Gestor']
 usernames = ['kiko', 'gestor']
 passwords = ['senha123', 'usiminas2025']
 
-hashed_passwords = stauth.Hasher(['senha123', 'usiminas2025']).generate()
+import hashlib
+
+# Função auxiliar para gerar hashes de senhas
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
+
+# Senhas já com hash direto
+hashed_passwords = [
+    hash_password('senha123'),
+    hash_password('usiminas2025')
+]
+
 
 credentials = {
     "usernames": {
