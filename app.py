@@ -23,7 +23,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ===== LOGIN =====
-names = ['Kiko', 'Gestor']
+name, authentication_status, username = authenticator.login('Login', 'sidebar')
+
 usernames = ['kiko', 'gestor']
 passwords = ['senha123', 'usiminas2025']
 
